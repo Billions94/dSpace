@@ -1,0 +1,125 @@
+query Users {
+  users {
+    id
+    firstName
+    lastName
+    email
+    bio
+    location
+    image
+    cover
+    session
+    isVerified
+    createdAt
+    userName
+    followers {
+      id
+      firstName
+      lastName
+      userName
+      email
+      refreshToken
+      bio
+      location
+      image
+      cover
+      session
+      isVerified
+      createdAt
+    }
+    following {
+      id
+    }
+  }
+}
+
+query User {
+  user {
+    id
+    image
+    firstName
+    lastName
+    userName
+    bio
+    cover
+    email
+    createdAt
+    updatedAt
+  }
+}
+
+
+query UserByUsername($username: String) {
+  userByUsername(username: $username) {
+    ... on Success {
+      data {
+        user {
+          id
+          firstName
+          lastName
+          userName
+          email
+          followers {
+            id
+            firstName
+            lastName
+            userName
+            email
+          }
+          following {
+            id
+            firstName
+            lastName
+            userName
+            email
+          }
+          bio
+          location
+          image
+          cover
+          session
+          isVerified
+          createdAt
+          updatedAt
+        }
+      }
+    }
+    ... on Error {
+      error {
+        message
+      }
+    }
+  }
+}
+
+mutation Register($input: RegisterUserInput) {
+  register(input: $input) {
+    accessToken
+    refreshToken
+  }
+}
+
+mutation Login($input: SessionInput) {
+  login(input: $input) {
+    accessToken
+    refreshToken
+  }
+}
+
+mutation UpdateUser($input: UserInput) {
+  updateUser(input: $input) {
+    bio
+    cover
+    email
+    userName
+    firstName
+    lastName
+    image
+    isVerified
+    location
+  }
+}
+
+mutation DeleteUser($userId: String) {
+  deleteUser(userId: $userId)
+}

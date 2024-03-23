@@ -1,0 +1,9 @@
+overwrite: true
+schema: "https://lexyspacegateway.fly.dev/graphql"
+documents: "app/src/graphql/**/*gql"
+generates:
+  './app/src/dto/index.ts':
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

@@ -1,0 +1,50 @@
+mutation CreatePost($input: PostInput) {
+    addPost(input: $input) {
+        id
+        content
+        user {
+            userName
+        }
+    }
+}
+
+query Posts {
+    posts {
+        id
+        content
+        user {
+            userName
+        }
+        comments {
+            content
+        }
+    }
+}
+
+query GetPostById($postId: String!) {
+    getPostById(postId: $postId) {
+        id
+        content
+        createdAt
+        user {
+            userName
+        }
+        comments {
+            content
+        }
+    }
+}
+
+mutation UpdatePost($postId: String, $input: PostInput) {
+    updatePost(postId: $postId, input: $input) {
+        id
+        content
+        media
+        createdAt
+        updatedAt
+    }
+}
+
+mutation DeletePost($postId: String!) {
+    deletePost(postId: $postId)
+}
